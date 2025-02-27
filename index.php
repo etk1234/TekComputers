@@ -7,6 +7,101 @@
     <title>TEK IT Consult Computers</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <style>
+         body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1e1e1e;
+            color: white;
+        }
+        header {
+            background: #0d6efd;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        nav {
+            background: #212529;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        section {
+            padding: 60px;
+            text-align: center;
+        }
+        .product-list {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .product {
+            background: #f8f9fa;
+            padding: 20px;
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            border-radius: 10px;
+            width: 280px;
+            color: black;
+        }
+        .product button {
+            background: #198754;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .contact-form {
+            background: #343a40;
+            padding: 30px;
+            width: 50%;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        .contact-form button {
+            width: 100%;
+            background: #0d6efd;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        footer {
+            background: #212529;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
         /* Existing styles remain unchanged */
         /* New login modal styles */
         .login-modal {

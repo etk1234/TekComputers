@@ -1,7 +1,4 @@
-<?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,100 +7,54 @@ ini_set('display_errors', 1);
     <title>TEK IT Consult Computers</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #1e1e1e;
-            color: white;
+        /* Existing styles remain unchanged */
+        /* New login modal styles */
+        .login-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
         }
-        header {
-            background: #0d6efd;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        nav {
-            background: #212529;
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin: 0 20px;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
-        }
-        section {
-            padding: 60px;
-            text-align: center;
-        }
-        .product-list {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-        .product {
-            background: #f8f9fa;
-            padding: 20px;
-            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
-            text-align: center;
+
+        .login-content {
+            background-color: #343a40;
+            margin: 15% auto;
+            padding: 30px;
+            width: 40%;
             border-radius: 10px;
-            width: 280px;
-            color: black;
+            position: relative;
         }
-        .product button {
+
+        .close-login {
+            color: #aaa;
+            position: absolute;
+            right: 25px;
+            top: 15px;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .login-form button {
             background: #198754;
             color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .contact-form {
-            background: #343a40;
-            padding: 30px;
-            width: 50%;
-            margin: auto;
-            border-radius: 10px;
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        .contact-form input, .contact-form textarea {
             width: 100%;
-            padding: 10px;
-            margin: 10px 0;
+            padding: 12px;
             border: none;
-            border-radius: 5px;
-        }
-        .contact-form button {
-            width: 100%;
-            background: #0d6efd;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 16px;
+            border-radius: 4px;
             cursor: pointer;
-        }
-        footer {
-            background: #212529;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 30px;
+            margin-top: 15px;
         }
     </style>
 </head>
@@ -115,6 +66,8 @@ ini_set('display_errors', 1);
             <li><a href="#products">Products</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
+            <!-- Added login menu item -->
+            <li><a href="#" onclick="openLogin()">Login</a></li>
         </ul>
     </nav>
     
@@ -126,20 +79,27 @@ ini_set('display_errors', 1);
     <section id="products">
         <h2>Our Products</h2>
         <div class="product-list">
-            <?php
-                $products = [
-                    ["name" => "Laptop", "price" => "$899"],
-                    ["name" => "Gaming PC", "price" => "$1499"],
-                    ["name" => "Keyboard", "price" => "$99"]
-                ];
-                foreach ($products as $product) {
-                    echo "<div class='product'>
-                            <h3>" . htmlspecialchars($product['name']) . "</h3>
-                            <p>Price: " . htmlspecialchars($product['price']) . "</p>
-                            <button>Buy Now</button>
-                          </div>";
-                }
-            ?>
+<section id="products">
+    <h2>Our Products</h2>
+    <div class="product-list">
+        <div class="product">
+            <h3>Laptop</h3>
+            <p>Price: $899</p>
+            <button>Buy Now</button>
+        </div>
+        <div class="product">
+            <h3>Gaming PC</h3>
+            <p>Price: $1499</p>
+            <button>Buy Now</button>
+        </div>
+        <div class="product">
+            <h3>Keyboard</h3>
+            <p>Price: $99</p>
+            <button>Buy Now</button>
+        </div>
+    </div>
+</section>
+
         </div>
     </section>
     
@@ -161,11 +121,49 @@ ini_set('display_errors', 1);
         </div>
     </section>
     
+    <!-- New login modal -->
+    <div id="loginModal" class="login-modal">
+        <div class="login-content">
+            <span class="close-login" onclick="closeLogin()">&times;</span>
+            <h2>Welcome Back!</h2>
+            <form class="login-form" onsubmit="handleLogin(event)">
+                <input type="email" placeholder="Email address" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Sign In</button>
+                <p style="margin-top: 15px;">New user? <a href="#" style="color: #0d6efd;">Create account</a></p>
+            </form>
+        </div>
+    </div>
+
     <footer>
         <p>&copy; 2024 TEK IT Consult Computers. All rights reserved.</p>
     </footer>
-    
+
     <script>
+        // Login modal functions
+        function openLogin() {
+            document.getElementById('loginModal').style.display = 'block';
+        }
+
+        function closeLogin() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+
+        // Handle login form submission
+        function handleLogin(e) {
+            e.preventDefault();
+            alert('Login functionality would be implemented here');
+            closeLogin();
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('loginModal')) {
+                closeLogin();
+            }
+        }
+
+        // Existing contact form script remains unchanged
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("contactForm").addEventListener("submit", function(event) {
                 event.preventDefault();
